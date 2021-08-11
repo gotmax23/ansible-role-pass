@@ -3,6 +3,6 @@
 # Ansible managed
 #
 repository:
-  description: Ansible role to install password-store (pass), the standard Unix password manager.
+  description: Ansible role that installs password-store (pass), the standard Unix password manager.
   homepage: "https://galaxy.ansible.com/gotmax23/pass"
   topics: pass, password-store, ansible, molecule, ansible-role, role

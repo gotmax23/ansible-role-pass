@@ -8,7 +8,7 @@
 [![Github Actions Molecule workflow status][badge-molecule-workflow]][link-molecule-workflow]
 [![Github Actions Galaxy workflow status][badge-galaxy-workflow]][link-galaxy-workflow]
 
-Ansible role to install password-store (pass), the standard Unix password manager.
+Ansible role that installs password-store (pass), the standard Unix password manager.
 
 ## Requirements
 

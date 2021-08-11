@@ -6,3 +6,32 @@
       - pass_state is defined
       - pass_state is string
       - pass_state in [ "present", "absent" ]
+
+- name: Ensure that pass_install_method is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_install_method is defined
+      - pass_install_method is string
+      - pass_install_method in [ "distro_package", "source" ]
+
+- name: Ensure that pass_download_path is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_download_path is defined
+      - pass_download_path is string
+
+- name: Ensure that pass_version is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_version is defined
+      - pass_version is string
+
+- name: Ensure that pass_make_params is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_make_params is defined
+      - pass_make_params is mapping

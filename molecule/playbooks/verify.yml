@@ -2,6 +2,9 @@
 - name: Verify
   hosts: all
 
+  vars:
+    pass_install_method: "{{ lookup('env', 'pass_install_method') | default('distro_package', True) }}"
+
   tasks:
     - name: Check if Pass is present
       register: pass_presence

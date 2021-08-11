@@ -17,6 +17,27 @@ For right now, I only test this role using the latest release of the `ansible` p
 
 ## Role Variables
 
+### Available Installation Methods
+
+This role allows you to choose which source to install Pass from. You may override the default installation method by setting `pass_install_method` to the one of the values outlined below.
+
+#### `pass_install_method=distro_package`
+
+**Description:** This installs Pass from the distribution's repositories. This version may be out of date.
+
+**Supported Distributions:** All distributions supported by this role
+
+**Default:** Yes
+
+#### `pass_install_method=source`
+**Description:** This installs Pass from source.
+
+**Supported Distributions:** All distributions supported by this role
+
+**Default:** No
+
+----
+
 Here are this role's variables and their default values, as set in [`defaults/main.yml`][link-defaults]. If you'd like, you may change them to customize this role's behavior.
 
 ``` yaml
@@ -26,6 +47,27 @@ Here are this role's variables and their default values, as set in [`defaults/ma
 # - `present` ensures that pass is installed
 # - `absent` ensures that pass is not installed.
 pass_state: "present"
+
+# Please see the `Available Installation Methods` section above
+pass_install_method: distro_package
+
+##########
+# These Variables only apply when `pass_install_method=source`.
+
+# Where to download and extract the Pass source tarball.
+pass_download_path: /opt/pass
+
+# Which version of Pass to install.
+# When set to latest, this role will determine the latest version
+# and install that.
+pass_version: 1.7.4
+
+# Parameters to pass to make.
+# Please see the [installation instructions](https://git.zx2c4.com/password-store/tree/INSTALL) and
+# [Makefile](https://git.zx2c4.com/password-store/tree/Makefile)
+# in Pass's Git repository for all available parameters.
+pass_make_params:
+  PREFIX: /usr/local
 
 ```
 

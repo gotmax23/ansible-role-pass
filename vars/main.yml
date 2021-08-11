@@ -1,6 +1,29 @@
 ---
 # vars file for pass
+_installw:
+  present: Install
+  absent: Remove
+installw: "{{ _installw[pass_state] }}"
+
+_pass_make_target:
+  present: install
+  absent: uninstall
+pass_make_target: "{{ _pass_make_target[pass_state] }}"
+
 _pass_package:
   default: pass
   Suse: password-store
 pass_package: "{{ _pass_package[ansible_os_family] | default(_pass_package['default']) }}"
+
+_pass_xz_package:
+  Debian: xz-utils
+  default: xz
+pass_xz_package: "{{ _pass_xz_package[ansible_os_family] | default(_pass_xz_package['default']) }}"
+
+pass_src_build_deps: [ "tar", "ca-certificates", "make", "{{ pass_xz_package }}" ]
+
+pass_src_name: "password-store-{{ pass_version }}"
+
+pass_src_tarball_url: "https://git.zx2c4.com/password-store/snapshot/{{ pass_src_name }}.tar.xz"
+
+pass_src_dir: "{{ pass_download_path }}/{{ pass_src_name }}"

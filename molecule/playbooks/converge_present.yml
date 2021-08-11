@@ -1,0 +1,11 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  vars:
+    pass_state: present
+
+  tasks:
+    - name: "Include gotmax23.pass"
+      include_role:
+        name: "gotmax23.pass"

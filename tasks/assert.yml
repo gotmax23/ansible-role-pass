@@ -1,0 +1,8 @@
+---
+- name: Ensure that pass_state is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_state is defined
+      - pass_state is string
+      - pass_state in [ "present", "absent" ]

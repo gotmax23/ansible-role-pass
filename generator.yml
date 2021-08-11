@@ -1,0 +1,9 @@
+---
+- name: Generate files
+  hosts: localhost
+  gather_facts: false
+
+  roles:
+    - gotmax23.generator
+
+# vim: set filetype=yaml.ansible:

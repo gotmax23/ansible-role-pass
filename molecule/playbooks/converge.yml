@@ -1,0 +1,10 @@
+---
+- name: Converge
+  hosts: all
+  become: true
+  tasks:
+    - name: Install Pass
+      vars:
+        pass_state: present
+      ansible.builtin.import_role:
+        name: "gotmax23.pass"

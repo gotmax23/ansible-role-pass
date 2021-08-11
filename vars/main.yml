@@ -1,0 +1,6 @@
+---
+# vars file for pass
+_pass_package:
+  default: pass
+  Suse: password-store
+pass_package: "{{ _pass_package[ansible_os_family] | default(_pass_package['default']) }}"

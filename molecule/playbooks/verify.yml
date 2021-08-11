@@ -1,0 +1,35 @@
+---
+- name: Verify
+  hosts: all
+
+  tasks:
+    - name: Check if Pass is present
+      register: pass_presence
+      changed_when: false
+      failed_when: false
+      ansible.builtin.command:
+        cmd: which pass
+
+    - name: Ensure Pass is installed
+      ansible.builtin.assert:
+        quiet: true
+        that: pass_presence.rc == 0
+
+    - name: Uninstall Pass
+      become: true
+      vars:
+        pass_state: absent
+      ansible.builtin.import_role:
+        name: "gotmax23.pass"
+
+    - name: Check if Pass is present
+      register: pass_presence_2
+      changed_when: false
+      failed_when: false
+      ansible.builtin.command:
+        cmd: which pass
+
+    - name: Ensure Pass is uninstalled
+      ansible.builtin.assert:
+        quiet: true
+        that: pass_presence_2.rc != 0

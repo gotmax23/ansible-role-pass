@@ -1,0 +1,23 @@
+---
+- name: Prepare
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Update apt cache
+      when: ansible_pkg_mgr == "apt"
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
+    - name: Ensure which is installed (needed for verify)
+      when: ansible_os_family != "Debian"
+      ansible.builtin.package:
+        name: which
+
+    - name: Ensure epel repo is installed
+      when:
+        - ansible_os_family == "RedHat"
+        - ansible_distribution_major_version in [ "7", "8" ]
+      ansible.builtin.include_role:
+        name: geerlingguy.repo-epel

@@ -1,0 +1,41 @@
+---
+galaxy_info:
+  role_name: pass
+
+  author: gotmax23
+
+  description: Ansible role to install password-store (pass), the standard Unix password manager.
+
+  license: MIT
+
+  min_ansible_version: 2.11
+
+  platforms:
+    - name: Archlinux
+      versions:
+        - any
+    - name: Debian
+      versions:
+        - buster
+        - bullseye
+    - name: EL
+      versions:
+        - 8
+    - name: Fedora
+      versions:
+        - all
+    - name: opensuse
+      versions:
+        - all
+    - name: Ubuntu
+      versions:
+        - all
+
+  galaxy_tags:
+    - pass
+    - password-store
+
+dependencies: []
+
+collections:
+  - community.general

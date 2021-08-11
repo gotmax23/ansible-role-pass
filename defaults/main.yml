@@ -1,0 +1,6 @@
+---
+# defaults file for pass
+# Options:
+# - `present` ensures that pass is installed
+# - `absent` ensures that pass is not installed.
+pass_state: "present"

@@ -1,0 +1,13 @@
+---
+# tasks file for pass
+- name: Ensure variables are set correctly
+  ansible.builtin.import_tasks: assert.yml
+  delegate_to: localhost
+  vars:
+    ansible_connection: local
+  become: false
+
+- name: "Ensure pass package is {{ pass_state }}"
+  ansible.builtin.package:
+    name: "{{ pass_package }}"
+    state: "{{ pass_state }}"

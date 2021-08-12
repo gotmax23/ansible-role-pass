@@ -1,0 +1,3 @@
+\[1]: https://git.zx2c4.com/password-store/tree/INSTALL
+
+\[2]: https://git.zx2c4.com/password-store/tree/Makefile

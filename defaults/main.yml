@@ -21,9 +21,6 @@ pass_download_path: /opt/pass
 # and install that.
 pass_version: 1.7.4
 
-# Parameters to pass to make.
-# Please see the [installation instructions](https://git.zx2c4.com/password-store/tree/INSTALL) and
-# [Makefile](https://git.zx2c4.com/password-store/tree/Makefile)
-# in Pass's Git repository for all available parameters.
-pass_make_params:
-  PREFIX: /usr/local
+# Parameters to pass to make. Please see the [installation instructions][1] and
+# [Makefile][2] in Pass's Git repository for all available parameters.ass_make_params:
+PREFIX: /usr/local

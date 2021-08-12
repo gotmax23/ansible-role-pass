@@ -40,36 +40,45 @@ This role allows you to choose which source to install Pass from. You may overri
 
 Here are this role's variables and their default values, as set in [`defaults/main.yml`][link-defaults]. If you'd like, you may change them to customize this role's behavior.
 
-``` yaml
----
-# defaults file for pass
-# Options:
-# - `present` ensures that pass is installed
-# - `absent` ensures that pass is not installed.
+```yaml
 pass_state: "present"
+```
 
-# Please see the `Available Installation Methods` section above
+Options:
+
+- `present` ensures that pass is installed
+
+- `absent` ensures that pass is not installed. This does not remove build depdendenies to avoid removing packages that you installed prior to running this role.
+
+``` yaml
 pass_install_method: distro_package
+```
 
-##########
-# These Variables only apply when `pass_install_method=source`.
+Please see the `Available Installation Methods` section above
 
-# Where to download and extract the Pass source tarball.
+----
+
+These variables only apply when `pass_install_method=source`.
+
+``` yaml
 pass_download_path: /opt/pass
+```
 
-# Which version of Pass to install.
-# When set to latest, this role will determine the latest version
-# and install that.
+Where to download and extract the Pass source tarball
+
+``` yaml
 pass_version: 1.7.4
+```
+Which version of Pass to instalt
 
-# Parameters to pass to make.
-# Please see the [installation instructions](https://git.zx2c4.com/password-store/tree/INSTALL) and
-# [Makefile](https://git.zx2c4.com/password-store/tree/Makefile)
-# in Pass's Git repository for all available parameters.
+``` yaml
 pass_make_params:
   PREFIX: /usr/local
-
 ```
+
+Parameters to pass to make
+Please see the [installation instructions](https://git.zx2c4.com/password-store/tree/INSTALL) and [Makefile](https://git.zx2c4.com/password-store/tree/Makefile) in Pass's Git repository for all available parameters.
+
 
 ## Example Playbook
 ``` yaml

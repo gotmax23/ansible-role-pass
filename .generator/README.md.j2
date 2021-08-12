@@ -47,9 +47,13 @@ For right now, I only test this role using the latest release of the `ansible` p
 {% endif %}
 Here are this role's variables and their default values, as set in [`defaults/main.yml`][link-defaults]. If you'd like, you may change them to customize this role's behavior.
 
+{% if generator_vars_md.content is defined %}
+{{ generator_vars_md.content | b64decode }}
+{% else %}
 ``` yaml
 {{ generator_defaults.content | b64decode }}
 ```
+{% endif %}
 
 ## Example Playbook
 ``` yaml

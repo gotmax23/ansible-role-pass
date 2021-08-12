@@ -3,6 +3,16 @@
   hosts: localhost
   gather_facts: false
 
+  vars:
+    generator_copy_readme_template: false
+
+  pre_tasks:
+    - name: Slurp vars.md for README
+      failed_when: false
+      register: generator_vars_md
+      ansible.builtin.slurp:
+        src: "{{ playbook_dir }}/.generator/vars.md"
+
   roles:
     - gotmax23.generator
 

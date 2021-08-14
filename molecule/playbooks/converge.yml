@@ -5,10 +5,10 @@
 
   vars:
     pass_install_method: "{{ lookup('env', 'pass_install_method') | default('distro_package', True) }}"
+    pass_state: "{{ lookup('env', 'pass_state') | default('present', True) }}"
+
 
   tasks:
-    - name: Install Pass
-      vars:
-        pass_state: present
+    - name: Install/Uninstall Pass
       ansible.builtin.import_role:
         name: "gotmax23.pass"

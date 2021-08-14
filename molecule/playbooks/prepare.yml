@@ -3,6 +3,13 @@
   hosts: all
   become: true
 
+  vars:
+    _pass_which_package:
+      Debian: debianutils
+      default: which
+    pass_which_package: "{{ _pass_which_package[ansible_os_family] | default(_pass_which_package['default']) }}"
+
+
   tasks:
     - name: Update apt cache
       when: ansible_pkg_mgr == "apt"
@@ -11,9 +18,8 @@
         cache_valid_time: 3600
 
     - name: Ensure which is installed (needed for verify)
-      when: ansible_os_family != "Debian"
       ansible.builtin.package:
-        name: which
+        name: "{{ pass_which_package }}"
 
     - name: Ensure epel repo is installed
       when:

@@ -3,6 +3,16 @@
   hosts: localhost
   gather_facts: false
 
+  vars:
+    generator_molecule_wflow_matrix:
+      install_method: [ "distro_package", "source" ]
+    generator_molecule_wflow_test_cmd:
+      cmd: |
+        export pass_state=present && molecule test --destroy never
+        export pass_state=absent && molecule test
+      env:
+        pass_install_method: !unsafe ${{ matrix.install_method }}
+
   roles:
     - gotmax23.generator
 

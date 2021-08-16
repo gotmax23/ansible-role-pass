@@ -8,8 +8,8 @@
       install_method: [ "distro_package", "source" ]
     generator_molecule_wflow_test_cmd:
       cmd: |
-        export pass_state=present && molecule test --destroy never
-        export pass_state=absent && molecule test
+        export pass_state=present && molecule test -s single --destroy never
+        export pass_state=absent && molecule -s single test
       env:
         pass_install_method: !unsafe ${{ matrix.install_method }}
 

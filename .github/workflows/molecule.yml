@@ -123,8 +123,8 @@ jobs:
 
       - name: Run molecule test
         run: |
-          export pass_state=present && molecule test --destroy never
-          export pass_state=absent && molecule test
+          export pass_state=present && molecule test -s single --destroy never
+          export pass_state=absent && molecule -s single test
 
         env:
           PY_COLORS: "1"

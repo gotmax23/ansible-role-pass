@@ -131,5 +131,5 @@ jobs:
           PY_COLORS: "1"
           ANSIBLE_FORCE_COLOR: "1"
           pass_install_method: "${{ matrix.install_method }}"
-          MOLECULE_IMAGE: "${{ matrix.os.image }}"
-          MOLECULE_TAG: "${{ matrix.os.tag }}"
+          image: "${{ matrix.os.image }}"
+          tag: "${{ matrix.os.tag }}"

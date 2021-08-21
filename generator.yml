@@ -4,15 +4,25 @@
   gather_facts: false
 
   vars:
-    generator_molecule_wflow_matrix:
-      install_method: [ "distro_package", "source" ]
-    generator_molecule_wflow_test_cmd:
-      cmd: |
-        export pass_state=present && molecule test -s single --destroy never
-        export pass_state=absent && molecule test -s single --destroy never
-        molecule destroy
+    generator_molecule_wflow_test:
       env:
         pass_install_method: !unsafe ${{ matrix.install_method }}
+      matrix:
+        install_method: [ "distro_package", "source" ]
+      skip_test_step: true
+      steps:
+        - name: "Molecule test: pass_state=present"
+          env:
+            pass_state: present
+          run: molecule test -s single --destroy never
+        - name: "Molecule test: pass_state=absent"
+          env:
+            pass_state: absent
+          run: molecule test -s single --destroy never
+        - name: Molecule destroy
+          if: always()
+          run: molecule destroy -s single
+
 
   roles:
     - gotmax23.generator

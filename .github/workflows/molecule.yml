@@ -60,7 +60,9 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        install_method: [distro_package, source]
+        install_method:
+        - distro_package
+        - source
         os:
           - image: "archlinux"
             tag: "any"
@@ -88,6 +90,12 @@ jobs:
             tag: "focal"
           - image: "ubuntu"
             tag: "hirsute"
+    env:
+      PY_COLORS: "1"
+      ANSIBLE_FORCE_COLOR: "1"
+      image: "${{ matrix.os.image }}"
+      tag: "${{ matrix.os.tag }}"
+      pass_install_method: "${{ matrix.install_method }}"
     steps:
       - name: Checkout Git Repo
         uses: actions/checkout@v2
@@ -120,16 +128,15 @@ jobs:
         run: |
           loginctl enable-linger runner
           sleep 1
+      - env:
+          pass_state: present
+        name: 'Molecule test: pass_state=present'
+        run: molecule test -s single --destroy never
+      - env:
+          pass_state: absent
+        name: 'Molecule test: pass_state=absent'
+        run: molecule test -s single --destroy never
+      - if: always()
+        name: Molecule destroy
+        run: molecule destroy -s single
 
-      - name: Run molecule test
-        run: |
-          export pass_state=present && molecule test -s single --destroy never
-          export pass_state=absent && molecule test -s single --destroy never
-          molecule destroy
-
-        env:
-          PY_COLORS: "1"
-          ANSIBLE_FORCE_COLOR: "1"
-          pass_install_method: "${{ matrix.install_method }}"
-          image: "${{ matrix.os.image }}"
-          tag: "${{ matrix.os.tag }}"

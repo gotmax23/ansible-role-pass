@@ -19,37 +19,6 @@
     name: "{{ pass_package }}"
     state: "{{ pass_state }}"
 
-- name: "Download pass source"
+- name: "{{ installw }} Pass from source"
   when: pass_install_method == "source"
-  block:
-    - name: Create necessary directory
-      ansible.builtin.file:
-        path: "{{ pass_download_path }}"
-        state: directory
-        mode: "0755"
-
-    - name: Install build dependencies
-      ansible.builtin.package:
-        name: "{{ pass_src_build_deps }}"
-
-    - name: Unarchive source tarball
-      # notify: pass_make
-      register: pass_ua_tarball
-      ansible.builtin.unarchive:
-        remote_src: true
-        src: "{{ pass_src_tarball_url }}"
-        dest: "{{ pass_download_path }}"
-
-    - name: "Pass: make {{ pass_make_target }}"
-      when: (pass_make_target == "uninstall") or
-            (pass_make_target == "install" and pass_ua_tarball.changed | bool)
-      community.general.make:
-        chdir: "{{ pass_src_dir }}"
-        params: "{{ pass_make_params }}"
-        target: "{{ pass_make_target }}"
-
-    - name: Clean up after uninstalling Pass
-      when: pass_state == "absent"
-      ansible.builtin.file:
-        path: "{{ pass_download_path }}"
-        state: absent
+  ansible.builtin.include_tasks: source_install.yml

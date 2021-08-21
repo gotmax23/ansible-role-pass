@@ -46,8 +46,8 @@ Here are this role's variables and their default values, as set in [`defaults/ma
 # Options:
 # - `present` ensures that pass is installed
 # - `absent` ensures that pass is not installed. This does not remove
-# build depdendenies to avoid removing packages that you installed
-# prior to running this role.
+# depdendenies to avoid removing packages that you installed prior to running
+# this role.
 pass_state: "present"
 
 # Please see the `Available Installation Methods` section above

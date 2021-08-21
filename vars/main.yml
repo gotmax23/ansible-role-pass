@@ -33,9 +33,14 @@ _pass_which_package:
   default: which
 pass_which_package: "{{ _pass_which_package[ansible_os_family] | default(_pass_which_package['default']) }}"
 
+_pass_gpg_package:
+  default: gpg
+  Archlinux: gnupg
+pass_gpg_package: "{{ _pass_gpg_package[ansible_distribution] | default(_pass_gpg_package['default']) }}"
+
 pass_src_build_deps: [ "tar", "ca-certificates", "make", "{{ pass_xz_package }}", "{{ pass_which_package }}" ]
 
-pass_src_run_deps: [ "bash", "gpg", "git", "tree", "util-linux", "qrencode" ]
+pass_src_run_deps: [ "bash", "{{ pass_gpg_package }}", "git", "tree", "util-linux", "qrencode" ]
 
 pass_src_name: "password-store-{{ pass_version }}"
 

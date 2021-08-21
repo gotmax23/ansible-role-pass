@@ -10,6 +10,13 @@ pass_state: "present"
 # Please see the `Available Installation Methods` section above
 pass_install_method: distro_package
 
+# Pass has the ability to copy passwords to your system clipboard using the `-c`
+# option of the `pass show` command. By default, this role installs `xclip`, the
+# clipbaord helper for Xorg. If you are using Wayland, change this value to
+# `wl-clipboard`. If you would like to install both `xclip` and `wl-clipboard`,
+# change this value to `both`.
+pass_clipboard_helper: xclip
+
 ##########
 # These Variables only apply when `pass_install_method=source`.
 

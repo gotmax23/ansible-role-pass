@@ -5,15 +5,23 @@ _installw:
   absent: Remove
 installw: "{{ _installw[pass_state] }}"
 
-_pass_make_target:
-  present: install
-  absent: uninstall
-pass_make_target: "{{ _pass_make_target[pass_state] }}"
-
 _pass_package:
   default: pass
   Suse: password-store
 pass_package: "{{ _pass_package[ansible_os_family] | default(_pass_package['default']) }}"
+
+_pass_clipboard_package:
+  default: "{{ pass_clipboard_helper }}"
+  both: [ "xclip", "wl-clipboard" ]
+pass_clipboard_package: "{{ _pass_clipboard_package[pass_clipboard_helper] | default(_pass_clipboard_package['default']) }}"
+
+##########
+# These Variables only apply when `pass_install_method=source`.
+
+_pass_make_target:
+  present: install
+  absent: uninstall
+pass_make_target: "{{ _pass_make_target[pass_state] }}"
 
 _pass_xz_package:
   Debian: xz-utils

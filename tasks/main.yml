@@ -7,6 +7,12 @@
     ansible_connection: local
   become: false
 
+- name: "Install Pass clipboard helper"
+  when: (pass_state == "present")
+  ansible.builtin.package:
+    name: "{{ pass_clipboard_package }}"
+    state: present
+
 - name: "{{ installw }} Pass package"
   when: pass_install_method == "distro_package"
   ansible.builtin.package:

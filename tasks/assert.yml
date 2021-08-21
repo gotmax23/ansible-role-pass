@@ -15,6 +15,14 @@
       - pass_install_method is string
       - pass_install_method in [ "distro_package", "source" ]
 
+- name: Ensure that pass_clipboard_helper is set correctly
+  ansible.builtin.assert:
+    quiet: true
+    that:
+      - pass_clipboard_helper is defined
+      - pass_clipboard_helper is string
+      - pass_clipboard_helper in [ "xclip", "wl-clipboard", "both" ]
+
 - name: Ensure that pass_download_path is set correctly
   ansible.builtin.assert:
     quiet: true

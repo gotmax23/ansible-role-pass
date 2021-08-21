@@ -29,6 +29,11 @@
         remote_src: true
         src: "{{ pass_src_tarball_url }}"
         dest: "{{ pass_download_path }}"
+        # This should not be required; Ansible should be able to figure out
+        # whether this task resulted in a change by itself. For some reason,
+        # Ansible does not report the status correctly on EL 8 and OpenSUSE Leap 15.3.
+        # Adding this line fixes the issue.
+        creates: "{{ pass_src_dir }}"
 
 - name: "make {{ pass_make_target }}"
   # This conditional is similar to the one above. The only difference is that

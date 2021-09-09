@@ -3,7 +3,6 @@
   hosts: all
 
   vars:
-    pass_install_method: "{{ lookup('env', 'pass_install_method') | default('distro_package', True) }}"
     pass_state: "{{ lookup('env', 'pass_state') | default('present', True) }}"
 
   tasks:

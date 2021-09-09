@@ -4,11 +4,25 @@
   become: true
 
   vars:
-    pass_install_method: "{{ lookup('env', 'pass_install_method') | default('distro_package', True) }}"
-    pass_state: "{{ lookup('env', 'pass_state') | default('present', True) }}"
-
+    pass_molecule_env_vars:
+      - pass_install_method
+      - pass_state
+      - pass_version
 
   tasks:
+    - name: Set role variables if they are defined as env variables
+      loop: "{{ pass_molecule_env_vars }}"
+      when:
+        - lookup('env', item) is string
+        - lookup('env', item) != ""
+      ansible.builtin.set_fact:
+        "{{ item }}": "{{ lookup('env', item) }}"
+
+    -
+      loop: "{{ pass_molecule_env_vars }}"
+      debug:
+        msg: "{{ lookup('vars', item, default='') }}"
+
     - name: Install/Uninstall Pass
       ansible.builtin.import_role:
         name: "gotmax23.pass"

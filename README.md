@@ -91,12 +91,9 @@ pass_make_params:
   become: true
 
   tasks:
-    - name: Install EPEL Repo
-      when:
-        - ansible_os_family == "RedHat"
-        - ansible_distribution_major_version in [ "7", "8" ]
+    - name: Install EPEL Repo (will only run on EL-based distros)
       ansible.builtin.include_role:
-        name: geerlingguy.repo-epel
+        name: robertdebock.epel
 
     - name: Install Pass
       ansible.builtin.include_role:

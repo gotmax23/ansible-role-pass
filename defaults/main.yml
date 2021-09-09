@@ -29,6 +29,6 @@ pass_download_path: /opt/pass
 pass_version: 1.7.4
 
 # Parameters to pass to make. Please see the [installation instructions][1] and
-# [Makefile][2] in Pass's Git repository for all available parameters.ass_make_params:
+# [Makefile][2] in Pass's Git repository for all available parameters.
 pass_make_params:
   PREFIX: /usr/local

@@ -2,7 +2,7 @@
 - name: Check if Pass is present
   environment:
     PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
-  register: pass_presence
+  register: _pass_presence
   changed_when: false
   failed_when: false
   ansible.builtin.command:
@@ -13,7 +13,7 @@
   # is present or if state is absent *and Pass is currently installed*. The latter
   # ensures that `pass_state == "present"` *and* `pass_state == "absent"` are idempotent.
   when: (pass_state == "present") or
-        (pass_state == "absent" and pass_presence.rc == 0)
+        (pass_state == "absent" and _pass_presence.rc == 0)
   block:
     - name: Create pass_download_path directory
       ansible.builtin.file:
@@ -26,7 +26,7 @@
         name: "{{ pass_src_build_deps }}"
 
     - name: Unarchive source tarball
-      register: pass_ua_tarball
+      register: _pass_ua_tarball
       ansible.builtin.unarchive:
         remote_src: true
         src: "{{ pass_src_tarball_url }}"
@@ -41,8 +41,8 @@
   # This conditional is similar to the one above. The only difference is that
   # when `pass_state == present`, this task will only run if the source files
   # have changed.
-  when: (pass_make_target == "uninstall" and pass_presence.rc == 0) or
-        (pass_make_target == "install" and pass_ua_tarball.changed | bool)
+  when: (pass_make_target == "uninstall" and _pass_presence.rc == 0) or
+        (pass_make_target == "install" and _pass_ua_tarball.changed | bool)
   community.general.make:
     chdir: "{{ pass_src_dir }}"
     params: "{{ pass_make_params }}"

@@ -8,6 +8,17 @@
   ansible.builtin.command:
     cmd: which pass
 
+- name: Determine latest pass_version, if necessary
+  when: pass_version == "latest"
+  block:
+    - name: Determine latest pass_version | Retrieve tags from Github
+      register: _pass_tags
+      ansible.builtin.uri:
+        url: "https://api.github.com/repos/zx2c4/password-store/tags"
+    - name: Determine latest pass_version | Set pass_version
+      ansible.builtin.set_fact:
+        pass_version: "{{ _pass_tags['json'][0]['name'] }}"
+
 - name: Download Pass source files
   # This conditional instructs Ansible to only download source files when state
   # is present or if state is absent *and Pass is currently installed*. The latter
@@ -78,5 +89,3 @@
   ansible.builtin.file:
     path: "{{ pass_download_path }}"
     state: absent
-
-# TODO: Implement `pass_version=latest`.

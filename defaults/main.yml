@@ -26,7 +26,8 @@ pass_download_path: /opt/pass
 # Which version of Pass to install.
 # When set to latest, this role will determine the latest version
 # and install that.
-pass_version: 1.7.4
+pass_version: latest
+# pass_version: 1.7.4
 
 # Parameters to pass to make. Please see the [installation instructions][1] and
 # [Makefile][2] in Pass's Git repository for all available parameters.

@@ -20,7 +20,7 @@
 
     -
       loop: "{{ pass_molecule_env_vars }}"
-      debug:
+      ansible.builtin.debug:
         msg: "{{ lookup('vars', item, default='') }}"
 
     - name: Install/Uninstall Pass

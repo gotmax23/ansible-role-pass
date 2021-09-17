@@ -12,17 +12,6 @@
   ansible.builtin.command:
     cmd: which pass
 
-- name: Determine latest pass_version, if necessary
-  when: pass_version == "latest"
-  block:
-    - name: Determine latest pass_version | Retrieve tags from Github
-      register: _pass_tags
-      ansible.builtin.uri:
-        url: "https://api.github.com/repos/zx2c4/password-store/tags"
-    - name: Determine latest pass_version | Set pass_version
-      ansible.builtin.set_fact:
-        pass_version: "{{ _pass_tags['json'][0]['name'] }}"
-
 - name: Download Pass source files
   # This conditional instructs Ansible to only download source files when state
   # is present or if state is absent *and Pass is currently installed*. The latter
@@ -30,15 +19,26 @@
   when: (pass_state == "present") or
         (pass_state == "absent" and _pass_presence.rc == 0)
   block:
+    - name: Install build dependencies
+      ansible.builtin.package:
+        name: "{{ pass_src_build_deps }}"
+
+    - name: Determine latest pass_version, if necessary
+      when: pass_version == "latest"
+      block:
+        - name: Determine latest pass_version | Retrieve tags from Github
+          register: _pass_tags
+          ansible.builtin.uri:
+            url: "https://api.github.com/repos/zx2c4/password-store/tags"
+        - name: Determine latest pass_version | Set pass_version
+          ansible.builtin.set_fact:
+            pass_version: "{{ _pass_tags['json'][0]['name'] }}"
+
     - name: Create pass_download_path directory
       ansible.builtin.file:
         path: "{{ pass_download_path }}"
         state: directory
         mode: "0755"
-
-    - name: Install build dependencies
-      ansible.builtin.package:
-        name: "{{ pass_src_build_deps }}"
 
     - name: Unarchive source tarball
       register: _pass_ua_tarball
@@ -69,24 +69,27 @@
     name: "{{ pass_src_run_deps }}"
     state: present
 
-- name: Clean up old versions in pass_download_path | Find old directories
-  register: pass_src_old_dirs
-  ansible.builtin.find:
-    path: "{{ pass_download_path }}"
-    patterns: "password-store-*"
-    excludes: "{{ pass_src_name }}"
-    file_type: directory
-
-- name: Clean up old versions in pass_download_path | Remove directories if needed
-  when: pass_src_old_dirs.files != []
+-
+  when: pass_state == "present"
   block:
+    - name: Clean up old versions in pass_download_path | Find old directories
+      register: pass_src_old_dirs
+      ansible.builtin.find:
+        path: "{{ pass_download_path }}"
+        patterns: "password-store-*"
+        excludes: "{{ pass_src_name }}"
+        file_type: directory
+
     - name: Clean up old versions in pass_download_path | Remove directories if needed
-      loop: "{{ pass_src_old_dirs.files }}"
-      loop_control:
-        label: "{{ item.path }}"
-      ansible.builtin.file:
-        path: "{{ item.path }}"
-        state: absent
+      when: pass_src_old_dirs.files != []
+      block:
+        - name: Clean up old versions in pass_download_path | Remove directories if needed
+          loop: "{{ pass_src_old_dirs.files }}"
+          loop_control:
+            label: "{{ item.path }}"
+          ansible.builtin.file:
+            path: "{{ item.path }}"
+            state: absent
 
 - name: Clean up after uninstalling Pass
   when: pass_state == "absent"

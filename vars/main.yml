@@ -38,7 +38,7 @@ _pass_gpg_package:
   Archlinux: gnupg
 pass_gpg_package: "{{ _pass_gpg_package[ansible_distribution] | default(_pass_gpg_package['default']) }}"
 
-pass_src_build_deps: [ "tar", "ca-certificates", "make", "{{ pass_xz_package }}", "{{ pass_which_package }}" ]
+pass_src_build_deps: [ "tar", "ca-certificates", "make", "{{ pass_xz_package }}" ]
 
 pass_src_run_deps: [ "bash", "{{ pass_gpg_package }}", "git", "tree", "util-linux", "qrencode" ]
 

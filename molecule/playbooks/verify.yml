@@ -4,8 +4,16 @@
 
   vars:
     pass_state: "{{ lookup('env', 'pass_state') | default('present', True) }}"
+    _pass_which_package:
+      Debian: debianutils
+      default: which
+    pass_which_package: "{{ _pass_which_package[ansible_os_family] | default(_pass_which_package['default']) }}"
 
   tasks:
+    - name: Ensure which is installed
+      ansible.builtin.package:
+        name: "{{ pass_which_package }}"
+
     - name: Check if Pass is present
       environment:
         PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"

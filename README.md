@@ -92,6 +92,12 @@ pass_make_params:
   become: true
 
   tasks:
+    - name: Update apt cache
+      when: ansible_pkg_mgr == "apt"
+      ansible.builtin.apt:
+        update_cache: true
+        cache_valid_time: 3600
+
     - name: Install EPEL Repo (will only run on EL-based distros)
       ansible.builtin.include_role:
         name: robertdebock.epel

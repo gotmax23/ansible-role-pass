@@ -110,6 +110,7 @@ pass_make_params:
 
 ## Compatibility
 This role is compatible with the following distros:
+
 |distro|versions|
 |------|--------|
 |Archlinux|any|

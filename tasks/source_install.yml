@@ -69,7 +69,9 @@
     name: "{{ pass_src_run_deps }}"
     state: present
 
--
+- name: Clean up old versions in pass_download_path
+  # It is not necesarry to waste time cleaning up old versions when pass_state == "absent",
+  # as the next task is sufficient
   when: pass_state == "present"
   block:
     - name: Clean up old versions in pass_download_path | Find old directories
@@ -82,14 +84,12 @@
 
     - name: Clean up old versions in pass_download_path | Remove directories if needed
       when: pass_src_old_dirs.files != []
-      block:
-        - name: Clean up old versions in pass_download_path | Remove directories if needed
-          loop: "{{ pass_src_old_dirs.files }}"
-          loop_control:
-            label: "{{ item.path }}"
-          ansible.builtin.file:
-            path: "{{ item.path }}"
-            state: absent
+      loop: "{{ pass_src_old_dirs.files }}"
+      loop_control:
+        label: "{{ item.path }}"
+      ansible.builtin.file:
+        path: "{{ item.path }}"
+        state: absent
 
 - name: Clean up after uninstalling Pass
   when: pass_state == "absent"

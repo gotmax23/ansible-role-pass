@@ -6,6 +6,7 @@
   gather_facts: false
 
   vars:
+    generator_epel_required: true
     generator_molecule_wflow_test:
       env:
         pass_install_method: !unsafe ${{ matrix.install_method }}

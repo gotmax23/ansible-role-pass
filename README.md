@@ -12,6 +12,8 @@ Ansible role that installs password-store (pass), the standard Unix password man
 
 ## Requirements
 
+If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so.
+
 For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
 - community.general
 

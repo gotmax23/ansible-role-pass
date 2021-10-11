@@ -12,10 +12,32 @@ Ansible role that installs password-store (pass), the standard Unix password man
 
 ## Requirements
 
-If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so.
+If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so. See the [example playbook](#example-playbook) for a a full example.
 
-For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
-- community.general
+This role depends on certain collections that are not included in ansible-core.
+
+This role's [example playbook](#example-playbook) requires another role to prepare the target system.
+
+To install this role's requirements, create a `requirements.yml` file with the contents below and run the following commands:
+
+``` shell
+# ansible-base/ansible-core 2.10 and above
+ansible-galaxy install -r requirements.yml
+
+# ansible 2.9
+ansible-galaxy collection install -r requirements.yml
+ansible-galaxy role install -r requirements.yml
+```
+
+``` yaml
+# requirements.yml
+---
+roles:
+  - name: robertdebock.epel
+collections:
+  - name: community.general
+
+```
 
 ## Role Variables
 
@@ -77,7 +99,10 @@ pass_version: latest
 # Parameters to pass to make. Please see the [installation instructions][1] and
 # [Makefile][2] in Pass's Git repository for all available parameters.
 pass_make_params:
-  PREFIX: /usr/local
+  # You can remove this value to install Pass to the default location, /usr/bin.
+  # You are welcome to change it to any other value, as long as "$PREFIX/bin" is
+  # in your system's PATH.
+  PREFIX: /usr/local # Install pass to /usr/local/bin
 
 ```
 

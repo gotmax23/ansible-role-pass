@@ -26,14 +26,37 @@
 ## Requirements
 {% if generator_epel_required | bool %}
 
-If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so.
+If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so. See the [example playbook](#example-playbook) for a a full example.
 {% endif %}
 
-For right now, I only test this role using the latest release of the `ansible` pip package, which includes all the collections that are no longer part of `ansible-core`. This is the supported method. However, if you choose to use `ansible-core` or still use Ansible 2.9, you must manually install the following collections:
-{% if meta.collections is defined and meta.collections is iterable %}
-{% for collection in meta.collections %}
-- {{ collection }}
-{% endfor %}
+{% if requirements_stat.stat.exists %}
+{%   if requirements.collections is defined %}
+This role depends on certain collections that are not included in ansible-core.
+{%   endif %}
+
+{%   if requirements.roles is defined %}
+This role's [example playbook](#example-playbook) requires another role to prepare the target system.
+{%   endif %}
+
+To install this role's requirements, create a `requirements.yml` file with the contents below and run the following commands:
+
+``` shell
+# ansible-base/ansible-core 2.10 and above
+ansible-galaxy install -r requirements.yml
+
+# ansible 2.9
+{%   if requirements.collections is defined %}
+ansible-galaxy collection install -r requirements.yml
+{%   endif %}
+{%   if requirements.roles is defined %}
+ansible-galaxy role install -r requirements.yml
+{%   endif %}
+```
+
+``` yaml
+# requirements.yml
+{{ _generator_requirements.content | b64decode }}
+```
 {% endif %}
 
 ## Role Variables

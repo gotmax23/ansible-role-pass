@@ -173,7 +173,7 @@ Maxwell G (@gotmax23)
 [link-srht-repo]: https://git.sr.ht/~gotmax23/ansible-role-pass
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-pass.svg?logo=github
 [link-version]: https://github.com/gotmax23/ansible-role-pass/releases/latest
-[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-pass/latest.svg
+[badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-pass/latest.svg?logo=github
 [badge-quality]: https://img.shields.io/ansible/quality/56499.svg?logo=ansible
 [badge-downloads]: https://img.shields.io/ansible/role/d/56499.svg?logo=ansible
 [badge-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml/badge.svg?branch=main

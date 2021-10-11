@@ -23,6 +23,10 @@
 
 {{ meta.galaxy_info.description }}
 
+{% if generator_role_beta | bool %}
+## Beta Warning
+**This role is currently in beta and is not intended for production use. Breaking changes may occur between releases, so please make sure to read the release notes.**
+{% endif %}
 ## Requirements
 {% if generator_epel_required | bool %}
 

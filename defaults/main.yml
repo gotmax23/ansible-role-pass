@@ -35,4 +35,4 @@ pass_make_params:
   # You can remove this value to install Pass to the default location, /usr/bin.
   # You are welcome to change it to any other value, as long as "$PREFIX/bin" is
   # in your system's PATH.
-  PREFIX: /usr/local # Install pass to /usr/local/bin
+  PREFIX: /usr/local  # Install pass to /usr/local/bin

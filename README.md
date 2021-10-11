@@ -10,6 +10,8 @@
 
 Ansible role that installs password-store (pass), the standard Unix password manager.
 
+## Beta Warning
+**This role is currently in beta and is not intended for production use. Breaking changes may occur between releases, so please make sure to read the release notes.**
 ## Requirements
 
 If you are using Enterprise Linux (CentOS, Rocky Linux, Alamlinux, RHEL, etc.), you need to install the EPEL repository. You can use the [`robertdebock.epel`](https://github.com/robertdebock/ansible-role-epel) role to do so. See the [example playbook](#example-playbook) for a a full example.
@@ -102,7 +104,7 @@ pass_make_params:
   # You can remove this value to install Pass to the default location, /usr/bin.
   # You are welcome to change it to any other value, as long as "$PREFIX/bin" is
   # in your system's PATH.
-  PREFIX: /usr/local # Install pass to /usr/local/bin
+  PREFIX: /usr/local  # Install pass to /usr/local/bin
 
 ```
 
@@ -155,13 +157,13 @@ Maxwell G (@gotmax23)
 
 [badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-pass.svg
 [link-license]: https://github.com/gotmax23/ansible-role-pass/blob/main/LICENSE
-[badge-role]: https://img.shields.io/ansible/role/.svg
+[badge-role]: https://img.shields.io/ansible/role/56499.svg
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/pass
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-pass.svg
 [link-version]: https://github.com/gotmax23/ansible-role-pass/releases/latest
 [badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-pass/latest.svg
-[badge-quality]: https://img.shields.io/ansible/quality/.svg
-[badge-downloads]: https://img.shields.io/ansible/role/d/.svg
+[badge-quality]: https://img.shields.io/ansible/quality/56499.svg
+[badge-downloads]: https://img.shields.io/ansible/role/d/56499.svg
 [badge-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml/badge.svg?branch=main
 [link-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml
 [badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/galaxy.yml/badge.svg

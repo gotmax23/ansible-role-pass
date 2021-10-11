@@ -159,9 +159,9 @@ This role is compatible with the following distros:
 ## Author
 Maxwell G (@gotmax23)
 
-[badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-pass.svg
+[badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-pass.svg?logo=github
 [link-license]: https://github.com/gotmax23/ansible-role-pass/blob/main/LICENSE
-[badge-role]: https://img.shields.io/ansible/role/56499.svg
+[badge-role]: https://img.shields.io/ansible/role/56499.svg?logo=ansible
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/pass
 [badge-github-repo]: https://img.shields.io/static/v1?label=Github&message=repo&color=lightblue&logo=github
 [link-github-repo]: https://github.com/gotmax23/ansible-role-pass
@@ -171,11 +171,11 @@ Maxwell G (@gotmax23)
 [link-github-prs]: https://github.com/gotmax23/ansible-role-pass/pulls
 [badge-srht-repo]: https://img.shields.io/static/v1?label=SourceHut&message=repo&color=lightgreen&logo=data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9Im5vIj8+CjxzdmcKICAgdmlld0JveD0iMCAwIDUxMiA1MTIiCiAgIHZlcnNpb249IjEuMSIKICAgaWQ9InN2ZzUxIgogICBzb2RpcG9kaTpkb2NuYW1lPSJzb3VyY2VodXQtd2hpdGUuc3ZnIgogICBpbmtzY2FwZTp2ZXJzaW9uPSIxLjEgKGM2OGUyMmMzODcsIDIwMjEtMDUtMjMpIgogICB4bWxuczppbmtzY2FwZT0iaHR0cDovL3d3dy5pbmtzY2FwZS5vcmcvbmFtZXNwYWNlcy9pbmtzY2FwZSIKICAgeG1sbnM6c29kaXBvZGk9Imh0dHA6Ly9zb2RpcG9kaS5zb3VyY2Vmb3JnZS5uZXQvRFREL3NvZGlwb2RpLTAuZHRkIgogICB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciCiAgIHhtbG5zOnN2Zz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgogIDxkZWZzCiAgICAgaWQ9ImRlZnM1NSIgLz4KICA8c29kaXBvZGk6bmFtZWR2aWV3CiAgICAgaWQ9Im5hbWVkdmlldzUzIgogICAgIHBhZ2Vjb2xvcj0iIzUwNTA1MCIKICAgICBib3JkZXJjb2xvcj0iI2ZmZmZmZiIKICAgICBib3JkZXJvcGFjaXR5PSIxIgogICAgIGlua3NjYXBlOnBhZ2VzaGFkb3c9IjAiCiAgICAgaW5rc2NhcGU6cGFnZW9wYWNpdHk9IjAiCiAgICAgaW5rc2NhcGU6cGFnZWNoZWNrZXJib2FyZD0iMSIKICAgICBzaG93Z3JpZD0iZmFsc2UiCiAgICAgaW5rc2NhcGU6em9vbT0iMS42NTQyOTY5IgogICAgIGlua3NjYXBlOmN4PSIyNTYiCiAgICAgaW5rc2NhcGU6Y3k9IjI1NiIKICAgICBpbmtzY2FwZTp3aW5kb3ctd2lkdGg9IjE5MjAiCiAgICAgaW5rc2NhcGU6d2luZG93LWhlaWdodD0iMTA1OSIKICAgICBpbmtzY2FwZTp3aW5kb3cteD0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3cteT0iMCIKICAgICBpbmtzY2FwZTp3aW5kb3ctbWF4aW1pemVkPSIxIgogICAgIGlua3NjYXBlOmN1cnJlbnQtbGF5ZXI9InN2ZzUxIiAvPgogIDxwYXRoCiAgICAgZD0iTTI1NiA4QzExOSA4IDggMTE5IDggMjU2czExMSAyNDggMjQ4IDI0OCAyNDgtMTExIDI0OC0yNDhTMzkzIDggMjU2IDh6bTAgNDQ4Yy0xMTAuNSAwLTIwMC04OS41LTIwMC0yMDBTMTQ1LjUgNTYgMjU2IDU2czIwMCA4OS41IDIwMCAyMDAtODkuNSAyMDAtMjAwIDIwMHoiCiAgICAgaWQ9InBhdGg0OSIKICAgICBzdHlsZT0iZmlsbDojZmZmZmZmIiAvPgo8L3N2Zz4K
 [link-srht-repo]: https://git.sr.ht/~gotmax23/ansible-role-pass
-[badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-pass.svg
+[badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-pass.svg?logo=github
 [link-version]: https://github.com/gotmax23/ansible-role-pass/releases/latest
 [badge-commits-since]: https://img.shields.io/github/commits-since/gotmax23/ansible-role-pass/latest.svg
-[badge-quality]: https://img.shields.io/ansible/quality/56499.svg
-[badge-downloads]: https://img.shields.io/ansible/role/d/56499.svg
+[badge-quality]: https://img.shields.io/ansible/quality/56499.svg?logo=ansible
+[badge-downloads]: https://img.shields.io/ansible/role/d/56499.svg?logo=ansible
 [badge-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml/badge.svg?branch=main
 [link-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml
 [badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/galaxy.yml/badge.svg

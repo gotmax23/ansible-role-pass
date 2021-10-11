@@ -156,7 +156,7 @@ This role is compatible with the following distros:
 Maxwell G (@gotmax23)
 
 [badge-license]: https://img.shields.io/github/license/gotmax23/ansible-role-pass.svg
-[link-license]: https://github.com/gotmax23/ansible-role-pass/blob/main/LICENSE
+[link-license]: tree/main/LICENSE
 [badge-role]: https://img.shields.io/ansible/role/56499.svg
 [link-galaxy]: https://galaxy.ansible.com/gotmax23/pass
 [badge-version]: https://img.shields.io/github/release/gotmax23/ansible-role-pass.svg
@@ -168,4 +168,4 @@ Maxwell G (@gotmax23)
 [link-molecule-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/molecule.yml
 [badge-galaxy-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/galaxy.yml/badge.svg
 [link-galaxy-workflow]: https://github.com/gotmax23/ansible-role-pass/actions/workflows/galaxy.yml
-[link-defaults]: https://github.com/gotmax23/ansible-role-pass/blob/main/defaults/main.yml
+[link-defaults]: tree/main/defaults/main.yml

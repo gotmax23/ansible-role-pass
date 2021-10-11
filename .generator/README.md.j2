@@ -1,6 +1,6 @@
 {% set generator_gh_repo = generator_namespace ~ "/ansible-role-" ~ generator_role_name %}
 {% set generator_gh_repo_url = "https://github.com/" ~ generator_gh_repo %}
-{% set generator_srht_repo = '~' ~ generator_namespace ~ "/ansible-role-" ~ generator_role_name %}
+{% set generator_srht_repo = "~" ~ generator_namespace ~ "/ansible-role-" ~ generator_role_name %}
 {% set generator_srht_repo_url = "https://git.sr.ht/" ~ generator_srht_repo %}
 {% set generator_ci_molecule_url = generator_gh_repo_url ~ "/actions/workflows/molecule.yml" %}
 {% set generator_ci_galaxy_url= generator_gh_repo_url ~ "/actions/workflows/galaxy.yml" %}

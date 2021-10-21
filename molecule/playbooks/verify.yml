@@ -27,7 +27,6 @@
         quiet: true
         that: pass_presence.rc == 0
 
-
     - name: Ensure Pass is uninstalled
       when: pass_state == "absent"
       ansible.builtin.assert:

@@ -4,8 +4,6 @@
     name: "{{ pass_which_package }}"
 
 - name: Check if Pass is present
-  environment:
-    PATH: "/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
   register: _pass_presence
   changed_when: false
   failed_when: false

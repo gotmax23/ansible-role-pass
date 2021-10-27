@@ -33,6 +33,6 @@ pass_version: latest
 # [Makefile][2] in Pass's Git repository for all available parameters.
 pass_make_params:
   # You can remove this value to install Pass to the default location, /usr/bin.
-  # You are welcome to change it to any other value, as long as "$PREFIX/bin" is
-  # in your system's PATH.
+  # You are welcome to change it to any other value, though I recomend keeping
+  # the default to avoid conflicting with the system package manager.
   PREFIX: /usr/local  # Install pass to /usr/local/bin

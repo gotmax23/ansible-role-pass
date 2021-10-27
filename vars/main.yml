@@ -17,6 +17,7 @@ pass_clipboard_package: "{{ _pass_clipboard_package[pass_clipboard_helper] | def
 
 ##########
 # These Variables only apply when `pass_install_method=source`.
+pass_src_bin_path: "{{ pass_make_params['PREFIX'] | default('/usr') }}/bin/pass"
 
 _pass_make_target:
   present: install
@@ -27,11 +28,6 @@ _pass_xz_package:
   Debian: xz-utils
   default: xz
 pass_xz_package: "{{ _pass_xz_package[ansible_os_family] | default(_pass_xz_package['default']) }}"
-
-_pass_which_package:
-  Debian: debianutils
-  default: which
-pass_which_package: "{{ _pass_which_package[ansible_os_family] | default(_pass_which_package['default']) }}"
 
 _pass_gpg_package:
   default: gpg

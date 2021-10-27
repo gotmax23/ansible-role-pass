@@ -1,21 +1,15 @@
 ---
-- name: Install which
-  ansible.builtin.package:
-    name: "{{ pass_which_package }}"
-
 - name: Check if Pass is present
   register: _pass_presence
-  changed_when: false
-  failed_when: false
-  ansible.builtin.command:
-    cmd: which pass
+  ansible.builtin.stat:
+    path: "{{ pass_src_bin_path }}"
 
 - name: Download Pass source files
   # This conditional instructs Ansible to only download source files when state
   # is present or if state is absent *and Pass is currently installed*. The latter
   # ensures that `pass_state == "present"` *and* `pass_state == "absent"` are idempotent.
   when: (pass_state == "present") or
-        (pass_state == "absent" and _pass_presence.rc == 0)
+        (pass_state == "absent" and _pass_presence.stat.exists | bool)
   block:
     - name: Install build dependencies
       ansible.builtin.package:
@@ -54,7 +48,7 @@
   # This conditional is similar to the one above. The only difference is that
   # when `pass_state == present`, this task will only run if the source files
   # have changed.
-  when: (pass_make_target == "uninstall" and _pass_presence.rc == 0) or
+  when: (pass_make_target == "uninstall" and _pass_presence.stat.exists | bool) or
         (pass_make_target == "install" and _pass_ua_tarball.changed | bool)
   community.general.make:
     chdir: "{{ pass_src_dir }}"

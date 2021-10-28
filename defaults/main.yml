@@ -1,18 +1,18 @@
 ---
 # defaults file for pass
-# Options:
-# - `present` ensures that pass is installed
-# - `absent` ensures that pass is not installed. This does not remove
-# depdendenies to avoid removing packages that you installed prior to running
-# this role.
-pass_state: "present"
-
 # Please see the `Available Installation Methods` section above
 pass_install_method: distro_package
 
+# Options:
+# - `present` ensures that pass is installed
+# - `absent` ensures that pass is not installed. This does not remove
+# dependencies that are installed when `pass_install_method=source` to avoid
+# removing packages that you installed prior to running this role.
+pass_state: "present"
+
 # Pass has the ability to copy passwords to your system clipboard using the `-c`
 # option of the `pass show` command. By default, this role installs `xclip`, the
-# clipbaord helper for Xorg. If you are using Wayland, change this value to
+# clipboard helper for Xorg. If you are using Wayland, change this value to
 # `wl-clipboard`. If you would like to install both `xclip` and `wl-clipboard`,
 # change this value to `both`.
 pass_clipboard_helper: xclip
@@ -33,6 +33,6 @@ pass_version: latest
 # [Makefile][2] in Pass's Git repository for all available parameters.
 pass_make_params:
   # You can remove this value to install Pass to the default location, /usr/bin.
-  # You are welcome to change it to any other value, though I recomend keeping
-  # the default to avoid conflicting with the system package manager.
+  # However, I recommend keeping this role's default which follows the Filesystem
+  # Hierarchy Standard[3] and avoids conflicting with the system package manager.
   PREFIX: /usr/local  # Install pass to /usr/local/bin
